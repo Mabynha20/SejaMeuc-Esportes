@@ -7,13 +7,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+backend/.next/
+.next/
+build/
+.cache/
 
 # Editor directories and files
-.vscode/*
+.vscode/
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -23,10 +30,17 @@ dist-ssr
 *.sln
 *.sw?
 
-# Build artifacts and local DB
-frontend/dist/
-backend/.next/
-**/node_modules/
+# Database and prisma
 *.db
 prisma-error.log
-.cache
+
+# Local environment files (do not commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Lockfiles (keep only the lockfile for your package manager)
+bun.lockb
+
+# Misc
+*.local
