@@ -1,4 +1,4 @@
-# Campionato Lovable
+# SejaMeuc - Esportes
 
 Plataforma moderna de gerenciamento de campeonatos com frontend React e backend Next.js.
 
