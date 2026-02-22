@@ -62,21 +62,20 @@ cd frontend && npm install && cd ..
 cd backend && npm install && cd ..
 ```
 
-4. Configure o banco e o Prisma (backend)
-
-```powershell
-cd backend
-npx prisma generate
-# Se for necessário criar/migrar o banco durante dev:
-npx prisma migrate dev --name init
-cd ..
-```
-
-5. Copie `example.env` para `.env` e ajuste valores locais
+4. Copie `example.env` para `.env` e ajuste valores locais
 
 ```powershell
 copy example.env .env
 # editar .env conforme necessário
+```
+
+5. Configure o banco e o Prisma (backend)
+
+```powershell
+cd backend
+npx prisma generate
+npx prisma migrate dev --name init
+cd ..
 ```
 
 ## Rodando em desenvolvimento
