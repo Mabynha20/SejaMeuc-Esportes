@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Build artifacts and local DB
+frontend/dist/
+backend/.next/
+**/node_modules/
+*.db
+prisma-error.log
+.cache
