@@ -45,8 +45,8 @@ campionato-lovable/
 1. Clone o repositório
 
 ```powershell
-git clone https://github.com/Mabynha20/campionato-lovable.git
-cd campionato-lovable
+git clone [https://github.com/Mabynha20/SejaMeuc-Esportes.git]
+cd sejameuc-esportes
 ```
 
 2. Instale dependências na raiz (scripts de conveniência)
