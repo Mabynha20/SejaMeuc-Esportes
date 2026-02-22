@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+// For Prisma v4 the URL must be in the schema
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Equipe {
+  id            Int            @id @default(autoincrement())
+  nome          String
+  cidade        String
+  participantes Participante[]
+  participacoes Participacao[]
+  resultados    Resultado[]
+}
+
+model Participante {
+  id            Int            @id @default(autoincrement())
+  nome          String
+  cpf           String         @unique
+  equipeId      Int
+  equipe        Equipe         @relation(fields: [equipeId], references: [id], onDelete: Cascade)
+  participacoes Participacao[]
+}
+
+model Esporte {
+  id            Int            @id @default(autoincrement())
+  modalidade    String
+  nome          String
+  data          String
+  horario       String
+  participacoes Participacao[]
+  resultados    Resultado[]
+}
+
+model Participacao {
+  id             Int          @id @default(autoincrement())
+  participanteId Int
+  equipeId       Int
+  esporteId      Int
+  participante   Participante @relation(fields: [participanteId], references: [id], onDelete: Cascade)
+  equipe         Equipe       @relation(fields: [equipeId], references: [id], onDelete: Cascade)
+  esporte        Esporte      @relation(fields: [esporteId], references: [id], onDelete: Cascade)
+
+  @@unique([participanteId, esporteId])
+}
+
+model Resultado {
+  id        Int     @id @default(autoincrement())
+  equipeId  Int
+  esporteId Int
+  pontos    Int     @default(0)
+  equipe    Equipe  @relation(fields: [equipeId], references: [id], onDelete: Cascade)
+  esporte   Esporte @relation(fields: [esporteId], references: [id], onDelete: Cascade)
+
+  @@unique([equipeId, esporteId])
+}
