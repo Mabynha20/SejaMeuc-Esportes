@@ -1,73 +1,129 @@
-# Welcome to your Lovable project
+# Campionato Lovable
 
-## Project info
+Plataforma moderna de gerenciamento de campeonatos com frontend React e backend Next.js.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 📁 Estrutura do Projeto
 
-## How can I edit this code?
+```
+campionato-lovable/
+├── frontend/          # Aplicação React (Vite)
+│   ├── src/
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── ...
+├── backend/           # API REST (Next.js + Prisma + SQLite)
+│   ├── app/
+│   ├── prisma/
+│   ├── lib/
+````markdown
+# Campionato Lovable
 
-There are several ways of editing your application.
+Projeto para gerenciar campeonatos esportivos com um frontend em React (Vite) e um backend em Next.js (API + Prisma).
 
-**Use Lovable**
+**Objetivo:** fornecer um painel simples para gerenciar equipes, participantes, esportes, resultados e gerar rankings/relatórios.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+**Público-alvo:** desenvolvedores que querem rodar localmente para desenvolvimento ou testar a API.
 
-Changes made via Lovable will be committed automatically to this repo.
+## Estrutura do repositório
 
-**Use your preferred IDE**
+```
+campionato-lovable/
+├── frontend/        # Aplicação React (Vite)
+├── backend/         # API Next.js + Prisma
+├── INTEGRATION_GUIDE.md
+├── example.env      # Modelo de variáveis de ambiente (não conter segredos)
+└── README.md
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Rápido (pré-requisitos)
+- Node.js 18+
+- npm
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Instalação (passo a passo)
 
-Follow these steps:
+1. Clone o repositório
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```powershell
+git clone https://github.com/Mabynha20/campionato-lovable.git
+cd campionato-lovable
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Instale dependências na raiz (scripts de conveniência)
 
-# Step 3: Install the necessary dependencies.
-npm i
+```powershell
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Instale dependências específicas (caso queira manualmente)
+
+```powershell
+cd frontend && npm install && cd ..
+cd backend && npm install && cd ..
+```
+
+4. Configure o banco e o Prisma (backend)
+
+```powershell
+cd backend
+npx prisma generate
+# Se for necessário criar/migrar o banco durante dev:
+npx prisma migrate dev --name init
+cd ..
+```
+
+5. Copie `example.env` para `.env` e ajuste valores locais
+
+```powershell
+copy example.env .env
+# editar .env conforme necessário
+```
+
+## Rodando em desenvolvimento
+
+Rodar frontend + backend juntos (script na raiz):
+
+```powershell
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+URLs padrão:
+- Frontend: `http://localhost:8080`
+- Backend (API): `http://localhost:3000`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Rodar separadamente:
 
-**Use GitHub Codespaces**
+```powershell
+npm run dev:frontend
+npm run dev:backend
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Scripts importantes (raiz)
 
-## What technologies are used for this project?
+- `npm run dev` — inicia ambos em modo desenvolvimento
+- `npm run dev:frontend` — inicia apenas o frontend
+- `npm run dev:backend` — inicia apenas o backend
+- `npm run build` — build para produção
 
-This project is built with:
+## Variáveis de ambiente
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Use o arquivo `example.env` como referência. Nunca comite arquivos que contenham segredos reais (ex.: `.env`).
 
-## How can I deploy this project?
+## Contribuição
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+- Faça um fork
+- Crie uma branch com descrição clara: `feature/nome-da-feature`
+- Abra um PR descrevendo a mudança e como testar
 
-## Can I connect a custom domain to my Lovable project?
+## Recursos e documentação
 
-Yes, you can!
+- Integração e endpoints detalhados: `INTEGRATION_GUIDE.md`
+- Backend: `backend/README.md`
+- Frontend: `frontend/README.md`
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Licença
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+MIT
+
+````
+| GET | `/api/ranking` | Obter ranking geral |
